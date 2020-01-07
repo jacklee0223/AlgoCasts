@@ -8,6 +8,17 @@
 // Example:
 //   fib(4) === 3
 
+// function fib(n) {
+//   const fibs = [0, 1];
+
+//   for (let i = 2; i <= n; i++) {
+//     const fib = fibs[i - 1] + fibs[i - 2];
+//     fibs.push(fib);
+//   }
+
+//   return fibs[n];
+// }
+
 function fib(n) {
   if (n < 2) return n;
 
