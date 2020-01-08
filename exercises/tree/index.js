@@ -20,11 +20,37 @@ class Node {
     this.children.push(new Node(data));
   }
 
-  remove() {
-    this.children = [];
+  remove(data) {
+    this.children = this.children.filter(node => node.data !== data);
   }
 }
 
-class Tree {}
+class Tree {
+  constructor() {
+    this.root = null;
+  }
+
+  traverseBF(cb) {
+    const arr = [this.root];
+
+    while (arr.length) {
+      const node = arr.shift();
+
+      arr.push(...node.children);
+      cb(node);
+    }
+  }
+
+  traverseDF(cb) {
+    const arr = [this.root];
+
+    while (arr.length) {
+      const node = arr.shift();
+
+      arr.unshift(...node.children);
+      cb(node);
+    }
+  }
+}
 
 module.exports = { Tree, Node };
