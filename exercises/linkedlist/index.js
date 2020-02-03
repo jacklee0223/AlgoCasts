@@ -15,7 +15,7 @@ class LinkedList {
   }
 
   insertFirst(data) {
-    this.head = new Node(data);
+    this.head = new Node(data, this.head);
   }
 
   size() {
@@ -55,12 +55,25 @@ class LinkedList {
   removeLast() {
     let node = this.head;
 
-    while (node) {
-      node = node.next();
+    if (!node) return node;
+
+    if (!node.next) {
+      this.head = null;
+      return;
     }
+
+    while (node.next.next) {
+      node = node.next;
+    }
+
+    node.next = null;
   }
 
-  
+  insertLast(data) {
+    let last = this.getLast();
+
+    last.next = new Node(data);
+  }
 }
 
 module.exports = { Node, LinkedList };
